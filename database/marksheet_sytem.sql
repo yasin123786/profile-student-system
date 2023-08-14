@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2023 at 07:18 AM
+-- Generation Time: Aug 13, 2023 at 03:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,8 +18,22 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `complete_profile_db`
+-- Database: `marksheet_sytem`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` bigint(20) NOT NULL,
+  `subject_name` varchar(100) NOT NULL,
+  `obtain_marks` varchar(100) NOT NULL,
+  `total_marks` varchar(100) NOT NULL,
+  `user_id` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -32,20 +46,20 @@ CREATE TABLE `users` (
   `user_name` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `user_firstname` varchar(100) NOT NULL,
-  `user_lastname` varchar(100) NOT NULL,
+  `user_fullname` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
-  `user_phone` varchar(100) NOT NULL,
-  `user_bio` varchar(100) NOT NULL,
-  `user_address` varchar(100) NOT NULL,
-  `user_dob` varchar(100) NOT NULL,
-  `user_gender` varchar(100) NOT NULL,
   `profile_image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -58,10 +72,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
