@@ -38,21 +38,41 @@ session_start();
                     <p class="text-center">Add Profile Pic</p>
     <?php endif; ?>
             <h1 class="text-center">
-                    <?php echo $user_data['user_fullname']; ?>
+                    <?php echo $user_data['user_firstname']; ?> <?php echo $user_data['user_lastname']; ?>
                 </h1>
-                <a href="upload_image.php" class="btn btn-dark fw-bold mt-3 w-50">Profile Pic</a>
-                <br>
-                <?php if (!empty($user_data['profile_image'])) : ?>
-                    <form action="reset_image.php" method="post" class="mt-3">
-                        <button type="submit" name="reset_image" class="btn btn-warning fw-bold w-50">Reset Profile Pic</button>
-                    </form>
-                    <?php endif; ?>
                     <a href="setting.php" class="btn btn-dark fw-bold mt-3 w-50">Setting</a>
                     <br>
                     <a href="logout.php" class="btn btn-warning w-50 fw-bold mt-3">Logout</a>
             </div>
             <div class="col-lg-4 p-5 w-50 bg-light">
                 <h1 class="text-center">Welcome</h1>
+                <h3>Your Information / Data:</h3>
+                <div class="row">
+                <div class="col-md-7 mt-4">
+                    <h5>E-Mail</h4>
+                    <p><?php echo $user_data['user_email']?></p>
+                </div>
+                <div class="col-md-5 mt-4">
+                    <h5>Phone No.</h4>
+                    <p><?php echo $user_data['user_phone']?></p>
+                </div>
+                <div class="col-md-7 mt-4">
+                    <h5>DOB</h4>
+                    <p><?php echo $user_data['user_dob']?></p>
+                </div>
+                <div class="col-md-5 mt-4">
+                    <h5>Gander</h4>
+                    <p><?php echo $user_data['user_gender']?></p>
+                </div>
+                <div class="col-12 mt-4">
+                    <h5>Address</h4>
+                    <p><?php echo $user_data['user_address']?></p>
+                </div>
+                <div class="col-12 mt-4">
+                    <h5>Bio</h4>
+                    <p><?php echo $user_data['user_bio']?></p>
+                </div>
+                </div>
                 <h3>Your Subjects:</h3>
                 <?php
 $user_id = $user_data['user_id'];

@@ -36,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <form class="row g-3 p-5" method="post">
     <p>Are you sure you want to delete your profile?</p>
       <div class="col-12">
-        <button id="button" type="submit" value="Delete Profile" class="btn btn-danger w-25 fw-bold p-3">Delete Profile</button>
+        <button id="button" type="submit" value="Delete Profile" class="btn btn-danger w-25 fw-bold">Delete Profile</button>
+        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
       </div>
     </form>
   </section>

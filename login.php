@@ -8,6 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
 
+    $user_name = mysqli_real_escape_string($con, $user_name);
+    $password = mysqli_real_escape_string($con, $password);
+
     if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
         $query = "SELECT * FROM users WHERE user_name = '$user_name' LIMIT 1";
         $result = mysqli_query($con, $query);

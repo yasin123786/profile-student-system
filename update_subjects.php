@@ -11,6 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $new_obtain_marks = $_POST['new_obtain_marks'];
     $new_total_marks = $_POST['new_total_marks'];
 
+    $subject_to_update = mysqli_real_escape_string($con, $subject_to_update);
+    $new_subject_name = mysqli_real_escape_string($con, $new_subject_name);
+    $new_obtain_marks = mysqli_real_escape_string($con, $new_obtain_marks);
+    $new_total_marks = mysqli_real_escape_string($con, $new_total_marks);
+
     $update_subject_query = "UPDATE subjects SET subject_name = '$new_subject_name', obtain_marks = '$new_obtain_marks', total_marks = '$new_total_marks' WHERE id = '$subject_to_update' AND user_id = '{$user_data['user_id']}'";
     $update_subject_result = mysqli_query($con, $update_subject_query);
 
@@ -69,6 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <input type="number" class="form-control" id="new_total_marks" name="new_total_marks" required>
         </div>
         <button type="submit" class="btn btn-primary">Update Profile</button>
+        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
     </form>
 </section>
 

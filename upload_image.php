@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <input type="file" name="profile_image" class="w-100 text-light bg-danger mb-3" accept="image/*" required>
         <br>
         <button type="submit" class="btn btn-danger text-light">Upload Image</button>
+        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
     </form>
   </section>
     

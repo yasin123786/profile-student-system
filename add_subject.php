@@ -12,8 +12,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $total_marks = $_POST['total_marks'];
   $user_id = $user_data['user_id'];
 
+    $subject_name = mysqli_real_escape_string($con, $subject_name);
+    $obtain_marks = mysqli_real_escape_string($con, $obtain_marks);
+    $total_marks = mysqli_real_escape_string($con, $total_marks);
+    $user_id = mysqli_real_escape_string($con, $user_id);
+
   $query = "INSERT INTO subjects (subject_name, obtain_marks, total_marks, user_id) VALUES ('$subject_name', '$obtain_marks', '$total_marks', '$user_id')";
+  
   mysqli_query($con, $query);
+  
   header("Location: index.php");
 }
 
@@ -51,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" class="form-control" id="total_marks" name="total_marks" required>
         </div>
         <button type="submit" class="btn btn-primary">Add Subject</button>
+        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
     </form>
 </section>
 

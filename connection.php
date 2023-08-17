@@ -3,7 +3,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "marksheet_sytem";
+$dbname = "complete_profile_db";
 
 if(!$con = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname))
 {

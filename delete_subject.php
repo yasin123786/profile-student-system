@@ -51,7 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </select>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-danger w-25 fw-bold p-3" onclick="return confirm('Are you sure you want to delete this subject?')">Delete Subject</button>
+                <button type="submit" class="btn btn-danger w-25 fw-bold" onclick="return confirm('Are you sure you want to delete this subject?')">Delete Subject</button>
+                <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
             </div>
         </form>
     </section>
