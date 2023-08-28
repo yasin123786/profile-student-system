@@ -88,11 +88,20 @@ if (mysqli_num_rows($subject_result) > 0) {
         $obtain_marks = $subject_row['obtain_marks'];
         $total_marks = $subject_row['total_marks'];
         $subject_name = $subject_row['subject_name'];
+        $pec = round($total_marks / $obtain_marks * 100);
 
-        echo "<p>{$subject_name} - Obtained Marks: {$obtain_marks} / Total Marks: {$total_marks}</p>";
+        echo "<p>{$subject_name} - Obtained Marks: {$obtain_marks} / Total Marks: {$total_marks} / Percentage {$pec}%</p>";
         
         $obtainMarks += $obtain_marks;
         $totalMarks += $total_marks;
+    }
+    if($pec < 30){
+        $to_email = "rehanwhynot123@gmail.com";
+        $subject = "From Student Profile System";
+        $body = "The Purpose of this mail is to inform you that your child, " . $user_data['user_firstname'] . " obtain marks less than 30% in annual exams";
+        $from = $user_data['user_email'];
+
+        mail($to_email, $subject, $body, $from);
     }
     echo "<b>Obtained Marks: {$obtainMarks} / Total Marks: {$totalMarks}</b>";
     echo "</ul>";
