@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 if (password_verify($password, $user_data['password'])) {
                     $_SESSION['user_id'] = $user_data['user_id'];
+                    $update_status = "UPDATE users SET user_status = 'Availible' WHERE user_id = '{$user_data['user_id']}'";
+                    $update_result = mysqli_query($con, $update_status);
                     header("Location: index.php");
                     die;
                 }
@@ -43,32 +45,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 
-  <style>
-    .wrong{
-    color: red;
-    text-align: center;
-  }
-  </style>
-
-	<div id="box" class="container-fluid my-4 text-light py-3">
+	<div id="box" class="container-fluid my-4 text-black py-3">
     <header class="text-center">
       <h1 class="fw-bold">Login</h1>
     </header>
   </div>
-  <section class="container my-2 w-50 fs-5 text-white p-2 border-radius">
-    <form class="row g-3 p-5" method="post">
-      <div class="col-md-6 mb-3">
+  <section class="container col-md-8 col-lg-3 img-thumbnail">
+    <form method="post" class="m-2">
+      <div class="mb-3">
         <label class="form-label">Username</label>
         <input type="text" id="text" class="form-control p-2" name="user_name" placeholder="Username" required>
       </div>
-      <div class="col-md-6">
+      <div>
         <label class="form-label">Password</label>
         <input type="password" id="text" class="form-control p-2" name="password" placeholder="Password" required>
       </div>
-      <div class="col-12">
-        <button id="button" type="submit" value="Login" class="btn btn-danger w-25 fw-bold p-3">Login in</button>
+      <div>
+        <button id="button" type="submit" value="Login" class="btn my-2 btn-dark fw-bold">Login in</button>
       </div>
-	  <h5 class="text-center text-light">Don't Have an Account |<a href="signup.php" class="text-light" style="text-decoration: none;"> Signup</a></h5>
+	  <h5 class="text-center text-black m-2">Don't Have an Account |<a href="signup.php" class="text-black" style="text-decoration: none;"> Signup</a></h5>
     </form>
   </section>
 </body>

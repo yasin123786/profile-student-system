@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if (!empty($user_name) && !empty($password) && !is_numeric($user_name)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO users (user_gender, user_dob, user_address, user_bio, user_phone, user_lastname, user_firstname, user_email, user_name, password) VALUES ('$user_gender', '$user_dob', '$user_address', '$user_bio', '$user_phone', '$user_lastname', '$user_firstname', '$user_email', '$user_name', '$hashed_password')";
+        $query = "INSERT INTO users (user_status, user_gender, user_dob, user_address, user_bio, user_phone, user_lastname, user_firstname, user_email, user_name, password) VALUES ('Offline', '$user_gender', '$user_dob', '$user_address', '$user_bio', '$user_phone', '$user_lastname', '$user_firstname', '$user_email', '$user_name', '$hashed_password')";
 
         mysqli_query($con, $query);
 
@@ -52,38 +52,38 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 
-	<div id="box" class="container-fluid my-4 text-light py-3">
+	<div id="box" class="container-fluid my-4 text-black py-3">
     <header class="text-center">
       <h1 class="fw-bold">Sign Up</h1>
     </header>
   </div>
-  <section class="container my-2 w-50 fs-5 text-white p-2 border-radius">
-    <form class="row g-3 p-5" method="post">
-      <div class="col-md-6 mb-3">
+  <section class="container col-md-8 col-lg-3 img-thumbnail">
+    <form class="m-2" method="post">
+      <div class="mb-3">
         <label class="form-label">Username</label>
         <input type="text" class="form-control p-2" name="user_name" placeholder="Username" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">Password</label>
         <input type="password" class="form-control p-2" name="password" placeholder="Password" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">First Name</label>
         <input type="text" class="form-control p-2" name="user_firstname" placeholder="First Name" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">Last Name</label>
         <input type="text" class="form-control p-2" name="user_lastname" placeholder="Last Name" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">E-Mail</label>
-        <input type="text" class="form-control p-2" name="user_email" placeholder="admin@gmail.com" required>
+        <input type="email" class="form-control p-2" name="user_email" placeholder="admin@gmail.com" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">Phone</label>
         <input type="text" class="form-control p-2" name="user_phone" placeholder="0314-0000-999" required>
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">Gender</label>
         <br>
         Male: <input type="radio" value="Male" class="p-2" name="user_gender" required>
@@ -92,22 +92,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <br>
         Others: <input type="radio" value="Others" class="p-2" name="user_gender">
       </div>
-      <div class="col-md-6">
+      <div class="mb-3">
         <label class="form-label">Dob</label>
         <input type="date" class="form-control p-2" name="user_dob" required>
       </div>
-      <div class="col-12">
+      <div class="mb-3">
         <label class="form-label">Address</label>
         <input type="text" class="form-control p-2" name="user_address" placeholder="Pakistan" required>
       </div>
-      <div class="col-12">
+      <div class="mb-3">
         <label class="form-label">Bio</label>
         <input type="text" class="form-control p-2" name="user_bio" placeholder="(500 Words)" required>
       </div>
       <div class="col-12">
-        <button id="button" type="submit" value="Signup" class="btn btn-danger w-25 fw-bold p-3">Sign Up</button>
+        <button id="button" type="submit" value="Signup" class="btn btn-dark mb-3 w-25 fw-bold">Sign Up</button>
       </div>
-	  <h5 class="text-center text-light">Already Have an Account |<a href="login.php" class="text-light for-hover" style="text-decoration: none;"> Login</a></h5>
+	  <h5 class="text-center text-black">Already Have an Account |<a href="login.php" class="text-black for-hover" style="text-decoration: none;"> Login</a></h5>
     </form>
   </section>
 </body>

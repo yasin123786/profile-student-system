@@ -35,8 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         header("Location: index.php");
         exit;
-    } else {
-        echo "Update failed.";
     }
 ?>
 
@@ -52,39 +50,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 
-        <div id="box" class="container-fluid my-4 text-light py-3">
+        <div id="box" class="container-fluid my-4 text-dark py-3">
     <header class="text-center">
       <h1 class="fw-bold">Setting</h1>
     </header>
   </div>
-  <section class="container my-2 w-50 fs-5 text-white p-2 border-radius">
+  <section class="container col-md-8 col-lg-3 img-thumbnail">
       <form action="setting.php" method="post">
-            <div class="row">
-        <div class="col-6">
+        <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" value="<?php echo $user_data['user_name']; ?>">
             </div>
-            <div class="col-6 mb-3">
+            <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <div class="col-6">
+            <div  class="mb-3">
                 <label for="user_firstname" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="user_firstname" name="user_firstname" value="<?php echo $user_data['user_firstname']; ?>">
             </div>
-            <div class="col-6 mb-3">
+            <div class="mb-3">
                 <label for="user_lastname" class="form-label">Last Name</label>
                 <input type="text" class="form-control" id="user_lastname" name="user_lastname" value="<?php echo $user_data['user_lastname']; ?>">
             </div>
-            <div class="col-6">
+            <div  class="mb-3">
                 <label for="user_email" class="form-label">E-Mail</label>
                 <input type="email" class="form-control" id="user_email" name="user_email" value="<?php echo $user_data['user_email']; ?>">
             </div>
-            <div class="col-6 mb-3">
+            <div class="mb-3">
                 <label for="user_phone" class="form-label">Phone No.</label>
                 <input type="text" class="form-control" id="user_phone" name="user_phone" value="<?php echo $user_data['user_phone']; ?>">
             </div>
-            <div class="col-6 mb-3">
+            <div class="mb-3">
         <label class="form-label">Gender</label>
         <br>
         Male: <input type="radio" value="Male" class="p-2" name="user_gender" required>
@@ -93,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <br>
         Others: <input type="radio" value="Others" class="p-2" name="user_gender">
             </div>
-            <div class="col-6">
+            <div  class="mb-3">
                 <label for="user_dob" class="form-label">DOB</label>
                 <input type="date" class="form-control" id="user_dob" name="user_dob" value="<?php echo $user_data['user_dob']; ?>">
             </div>
@@ -105,17 +102,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <label for="user_bio" class="form-label">Bio</label>
                 <input type="text" class="form-control" id="user_bio" name="user_bio" value="<?php echo $user_data['user_bio']; ?>">
             </div>
-        </div>
-        <button type="submit" class="btn btn-danger text-light w-25 fw-bold mb-4">Update Profile</button>
-        <a href="delete_profile.php" class="btn btn-danger text-light w-25 fw-bold mb-4">Delete Profile</a>  
+        <button type="submit" class="btn btn-dark text-light fw-bold mb-4">Update Profile</button>
+        <a href="delete_profile.php" class="btn btn-dark text-light fw-bold mb-4">Delete Profile</a>  
+        <a href="index.php" class="btn btn-dark text-light fw-bold mb-4">Cancel</a>
     </form>
-    <a href="upload_image.php" class="btn btn-danger text-light w-25 fw-bold">Profile Pic</a>
+    <a href="upload_image.php" class="btn btn-dark text-light fw-bold">Profile Pic</a>
     <?php if (!empty($user_data['profile_image'])) : ?>
         <form action="reset_image.php" method="post" class="mt-3">
-                <button type="submit" name="reset_image" class="btn btn-danger text-light w-25 fw-bold">Reset Profile Pic</button>
+                <button type="submit" name="reset_image" class="btn btn-dark text-light fw-bold">Reset Profile Pic</button>
         </form>
         <?php endif; ?>
-        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
   </section>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./css/bootstrap.min.css">
+
 <?php
 session_start();
 include("connection.php");
@@ -5,78 +7,63 @@ include("functions.php");
 
 $user_data = check_login($con);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $subject_to_update = $_POST['subject_to_update'];
-    $new_subject_name = $_POST['new_subject_name'];
-    $new_obtain_marks = $_POST['new_obtain_marks'];
-    $new_total_marks = $_POST['new_total_marks'];
+if (isset($_GET['subject_id']) && is_numeric($_GET['subject_id'])) {
+    $subject_id = $_GET['subject_id'];
 
-    $subject_to_update = mysqli_real_escape_string($con, $subject_to_update);
-    $new_subject_name = mysqli_real_escape_string($con, $new_subject_name);
-    $new_obtain_marks = mysqli_real_escape_string($con, $new_obtain_marks);
-    $new_total_marks = mysqli_real_escape_string($con, $new_total_marks);
+if (isset($_SESSION['user_id'])) {
+$user_id = $_SESSION['user_id'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $new_name = $_POST['new_name'];
+        $new_obtain_marks = $_POST['new_obtain_marks'];
+        $new_total_marks = $_POST['new_total_marks'];
 
-    $update_subject_query = "UPDATE subjects SET subject_name = '$new_subject_name', obtain_marks = '$new_obtain_marks', total_marks = '$new_total_marks' WHERE id = '$subject_to_update' AND user_id = '{$user_data['user_id']}'";
-    $update_subject_result = mysqli_query($con, $update_subject_query);
+        $update_query = "UPDATE subjects SET subject_name = '$new_name', obtain_marks = '$new_obtain_marks', total_marks = '$new_total_marks' WHERE id = '$subject_id' AND user_id = '$user_id'";
+        $update_result = mysqli_query($con, $update_query);
 
-    if ($update_subject_result) {
-        header("Location: index.php");
-        exit;
+        if ($update_result) {
+            header('Location: index.php');
+        } else {
+            echo "Error: Unable to update subject.";
+        }
     } else {
-        echo "Update failed.";
+        $subject_query = "SELECT * FROM subjects WHERE id = '$subject_id' AND user_id = '$user_id'";
+        $subject_result = mysqli_query($con, $subject_query);
+
+        if (mysqli_num_rows($subject_result) > 0) {
+            $subject_row = mysqli_fetch_assoc($subject_result);
+            $obtain_marks = $subject_row['obtain_marks'];
+            $total_marks = $subject_row['total_marks'];
+            $subject_name = $subject_row['subject_name'];
+
+            echo "<h1 class='text-center m-5'>Edit Subject: {$subject_name}</h1>
+            <section class='container col-md-8 col-lg-3 img-thumbnail'>
+    <form method='POST' class='m-2' action='update_subjects.php?subject_id=$subject_id'>
+      <div class='mb-3'>
+        <label class='form-label'>Subject Name</label>
+        <input type='text' name='new_name' value='$subject_name' class='form-control p-2' required>
+      </div>
+      <div class='mb-3'>
+        <label class='form-label'>Subject Name</label>
+        <input type='text' name='new_obtain_marks' value='$obtain_marks' class='form-control p-2' required>
+      </div>
+      <div>
+        <label class='form-label'>Password</label>
+        <input type='text' name='new_total_marks' value='$total_marks' class='form-control p-2' required>
+      </div>
+      <div>
+        <button type='submit' value='Save Changes' class='btn my-2 btn-dark fw-bold'>Update Subject</button>
+        <a href='index.php' class='btn my-2 btn-dark fw-bold'>Cancel</a>
+      </div>
+	  </form>
+  </section>
+           ";
+           } else {
+            header("Location: login.php"); // Replace 'login.php' with your actual login page
+            exit();
+        }
+    } 
     }
+} else {
+    echo "Invalid subject ID.";
 }
-
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Subjects</title>
-</head>
-<body>
-<link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./css/style.css">
-
-<div id="box" class="container-fluid my-4 text-light py-3">
-    <header class="text-center">
-        <h1 class="fw-bold">Update Subjects</h1>
-    </header>
-</div>
-<section class="container my-2 w-50 fs-5 text-white p-2 border-radius">
-    <form action="update_subjects.php" method="post">
-        <div class="mb-3">
-            <label for="subject_to_update" class="form-label">Select Subject to Update</label>
-            <select class="form-select" id="subject_to_update" name="subject_to_update">
-                <?php
-                $subject_query = "SELECT * FROM subjects WHERE user_id = '{$user_data['user_id']}'";
-                $subject_result = mysqli_query($con, $subject_query);
-
-                while ($subject_row = mysqli_fetch_assoc($subject_result)) {
-                    echo "<option value='{$subject_row['id']}'>{$subject_row['subject_name']}</option>";
-                }
-                ?>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="new_subject_name" class="form-label">New Subject Name</label>
-            <input type="text" class="form-control" id="new_subject_name" name="new_subject_name" required>
-        </div>
-        <div class="mb-3">
-            <label for="new_obtain_marks" class="form-label">New Obtain Marks</label>
-            <input type="number" class="form-control" id="new_obtain_marks" name="new_obtain_marks" required>
-        </div>
-        <div class="mb-3">
-            <label for="new_total_marks" class="form-label">New Total Marks</label>
-            <input type="number" class="form-control" id="new_total_marks" name="new_total_marks" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Update Profile</button>
-        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
-    </form>
-</section>
-
-</body>
-</html>

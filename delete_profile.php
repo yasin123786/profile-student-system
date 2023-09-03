@@ -27,17 +27,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./css/style.css">
 
-	<div id="box" class="container-fluid my-4 text-light py-3">
+	<div id="box" class="container-fluid my-4 text-dark py-3">
     <header class="text-center">
       <h1 class="fw-bold">Delete Profile</h1>
     </header>
   </div>
-  <section class="container my-2 w-50 fs-5 text-white p-2 border-radius">
-    <form class="row g-3 p-5" method="post">
+  <section class="container col-md-8 col-lg-3 img-thumbnail">
+    <form class="m-2" method="post">
     <p>Are you sure you want to delete your profile?</p>
       <div class="col-12">
-        <button id="button" type="submit" value="Delete Profile" class="btn btn-danger w-25 fw-bold">Delete Profile</button>
-        <a href="index.php" class="btn btn-danger text-light w-25 fw-bold">Cancel</a>
+        <button id="button" type="submit" value="Delete Profile" class="btn btn-dark fw-bold">Delete Profile</button>
+        <a href="index.php" class="btn btn-dark text-light fw-bold">Cancel</a>
       </div>
     </form>
   </section>
